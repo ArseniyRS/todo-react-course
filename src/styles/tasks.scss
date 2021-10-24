@@ -1,0 +1,78 @@
+.task-list{
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 800px;
+}
+
+.task-item{
+    background-color: rgb(205, 199, 221);
+    padding: 15px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+
+    &__id{
+        margin-right: 15px;
+        font-weight: bold;
+        color: rgb(101, 101, 192);
+    }
+
+    &__title{
+        
+    }
+}
+.add-task{
+    padding: 15px;
+    color: #fff;
+    background-color: rgb(231, 164, 39);
+    border-radius: 10px;
+    border: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+
+.create-task-form{
+    width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 60px;
+    h1{
+        color: #fff;
+        margin-bottom: 15px;
+    }
+    input{
+        padding: 10px;
+        border: none;
+        font-size: 1.1em;
+        margin-bottom: 15px;
+        border-radius: 15px;
+    }
+    input[type=checkbox]{
+        margin-right: 10px;
+        margin-bottom: 0;
+    }
+    label{
+        display: flex;
+        align-items: center;
+        color: #fff;
+        margin-bottom: 15px;
+        cursor: pointer;
+        user-select: none;
+    }
+    button{
+        padding: 15px;
+        border-radius: 15px;
+        color: #fff;
+        background-color: green;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        text-transform: uppercase;
+    }
+}
