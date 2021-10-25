@@ -10,8 +10,8 @@
     padding: 15px;
     border-radius: 15px;
     margin-bottom: 15px;
-    cursor: pointer;
-
+    display: flex;
+    justify-content: space-between;
     &__id{
         margin-right: 15px;
         font-weight: bold;
@@ -19,7 +19,33 @@
     }
 
     &__title{
-        
+    }
+
+    &__btn{
+        font-size: 1.3em;
+        margin-left: 5px;
+        border-radius: 6px;
+        padding: 5px;
+        cursor: pointer;
+        border: 2px solid rgb(196, 196, 196);
+    }
+
+    .delete-btn{
+        color: rgb(255, 68, 68);
+    }
+    .imp-btn{
+        color: rgb(255, 207, 74);
+    }
+    .completed-btn{
+        color: #53C570;
+    }
+    .completed-btn-active{
+        background-color: #53C570;
+        color: #fff;
+    }
+    .imp-btn-active{
+        background-color: rgb(255, 207, 74);
+        color: #fff;
     }
 }
 .add-task{

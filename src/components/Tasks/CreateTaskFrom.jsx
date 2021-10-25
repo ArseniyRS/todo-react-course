@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import {ToastsContainer, ToastsStore} from 'react-toasts';
+import {ToastsStore} from 'react-toasts';
 import { withRouter } from 'react-router-dom';
 
 
@@ -30,7 +30,6 @@ const CreateTaskForm = ({onSubmit, lastId, ...props}) =>{
             </label>
             
             <button>Save</button>
-            <ToastsContainer store={ToastsStore}/>
         </form>
     )
 }
