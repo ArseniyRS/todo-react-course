@@ -8,17 +8,21 @@ import {ToastsContainer, ToastsStore} from 'react-toasts';
 
 function App() {
   const [tasks, setTasks] = useState([])
+  const [fetchTasks, setFetchTasks] = useState(false)
+
   const getData = async () => {
+    setFetchTasks(true)
     const { data } = await getTaskList()
     setTasks(data)
+    setFetchTasks(false)
   }
   useEffect(() => {
     getData()
   }, [])
 
-  console.log(tasks)
 
-  const createImportantOrCompleted = (id, state, btnValue) =>{
+
+  const createTaskStatus = (id, state, btnValue) =>{
     const copyData = [...tasks]
     const changedData = copyData.map(task =>{
       if(task.id === id){
@@ -42,8 +46,8 @@ function App() {
   return (
     <div className="App">
         <ToastsContainer store={ToastsStore}/>
-      <Route path={'/'} exact >
-        <TaskList tasks={tasks} onDeleteTask={deleteTask} onImportantOrCompletedTask={createImportantOrCompleted} />
+      <Route path={['/', '/important', '/completed', '/deleted']} exact >
+        <TaskList loader={fetchTasks} tasks={tasks} onDeleteTask={deleteTask} onStatusTask={createTaskStatus} />
       </Route>
       <Route path={'/create-task'}  exact >
         <CreateTaskForm onSubmit={createTask} lastId={tasks.length+1}/>

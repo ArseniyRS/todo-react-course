@@ -91,14 +91,22 @@
         cursor: pointer;
         user-select: none;
     }
-    button{
-        padding: 15px;
-        border-radius: 15px;
-        color: #fff;
-        background-color: green;
-        border: none;
-        font-weight: bold;
-        cursor: pointer;
-        text-transform: uppercase;
-    }
+}
+
+.option-btns{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.option-btn{
+    border: 2px solid rgb(185, 185, 185);
+    padding: 15px;
+    font-size: 1.5em;
+    border-radius: 10px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: rgb(73, 73, 73);
+    cursor: pointer;
+    background-color: #fff;
+    text-decoration: none;
 }
