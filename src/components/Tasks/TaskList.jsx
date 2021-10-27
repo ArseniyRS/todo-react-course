@@ -4,14 +4,14 @@ import '../../styles/tasks.scss'
 import AddTaskBtn from "./AddTaskBtn";
 import { Link, withRouter } from 'react-router-dom'
 import Preloader from '../Preloader';
+import SearchTask from './SearchTask';
 
-const TaskList = ({ tasks = [], onDeleteTask, onStatusTask, loader, ...props }) => {
+
+const TaskList = ({ tasks = [], onDeleteTask, onStatusTask, loader, onSearch, ...props }) => {
     const [filteredTasks, setFilteredTasks] = useState(tasks)
 
     useEffect(() => {
-        if(tasks.length)
-            chooseSort(props.location.pathname)
-    
+        chooseSort(props.location.pathname)
     }, [tasks, props.location.pathname])
 
 
@@ -29,9 +29,10 @@ const TaskList = ({ tasks = [], onDeleteTask, onStatusTask, loader, ...props }) 
                 return setFilteredTasks(copyNonDeleted)
         }
     }
- 
+
     return (
         <div className="task-list">
+            <SearchTask onSearch={onSearch}/>
             <div className="option-btns">
                 <AddTaskBtn />
                 <Link to="/" className="option-btn">All</Link>

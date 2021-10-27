@@ -28,6 +28,7 @@
         padding: 5px;
         cursor: pointer;
         border: 2px solid rgb(196, 196, 196);
+        background-color: #fff;
     }
 
     .delete-btn{
@@ -46,6 +47,9 @@
     .imp-btn-active{
         background-color: rgb(255, 207, 74);
         color: #fff;
+    }
+    .edit-btn{
+        color: rgb(182, 182, 182);
     }
 }
 .add-task{
@@ -85,11 +89,21 @@
     }
     label{
         display: flex;
-        align-items: center;
+        flex-direction: column;
         color: #fff;
-        margin-bottom: 15px;
         cursor: pointer;
         user-select: none;
+    }
+
+    button{
+        padding: 15px;
+        border-radius: 15px;
+        color: #fff;
+        background-color: green;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        text-transform: uppercase;
     }
 }
 
@@ -109,4 +123,25 @@
     cursor: pointer;
     background-color: #fff;
     text-decoration: none;
+}
+
+.search-task{
+   display: flex;
+   margin-top: 20px;
+    input{
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid rgb(185, 185, 185);
+        width: 80%;
+    }
+    button{
+        width: 18%;
+        padding: 15px;
+        border-radius: 10px;
+        border: 2px solid rgb(185, 185, 185);
+        cursor: pointer;
+        background-color: brown;
+        color: #fff;
+        margin-left: 15px;
+    }
 }
