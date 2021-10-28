@@ -12,6 +12,7 @@
     margin-bottom: 15px;
     display: flex;
     justify-content: space-between;
+    flex-wrap: wrap;
     &__id{
         margin-right: 15px;
         font-weight: bold;
@@ -50,6 +51,17 @@
     }
     .edit-btn{
         color: rgb(182, 182, 182);
+    }
+
+    &__user{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        span{
+            text-transform: uppercase;
+            margin: 5px 0;
+            color:rgb(73, 73, 73);
+        }
     }
 }
 .add-task{

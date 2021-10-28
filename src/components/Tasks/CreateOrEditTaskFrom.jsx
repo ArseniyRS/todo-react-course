@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { useEffect } from 'react/cjs/react.development';
 
 
-const CreateOrEditTaskFrom = ({ onSubmitForCreate, onSubmitForEdit, lastId, tasks, ...props }) => {
+const CreateOrEditTaskFrom = ({ onSubmitForCreate, onSubmitForEdit,  tasks, ...props }) => {
     const [inputTitle, setInputTitle] = useState('')
     const [inputUser, setInputUser] = useState(1)
 
@@ -36,7 +36,7 @@ const CreateOrEditTaskFrom = ({ onSubmitForCreate, onSubmitForEdit, lastId, task
                 if (props.match.params.id) {
                     onSubmitForEdit(props.match.params.id, {
                         title: inputTitle,
-                        userId: inputUser
+                        userId: inputUser,
                     })
                 } else {
                     onSubmitForCreate({
@@ -45,7 +45,6 @@ const CreateOrEditTaskFrom = ({ onSubmitForCreate, onSubmitForEdit, lastId, task
                         completed: false,
                         important: false,
                         deleted: false,
-                        id: lastId
                     })
                 }
             } else {

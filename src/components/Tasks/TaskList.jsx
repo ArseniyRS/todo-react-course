@@ -40,10 +40,7 @@ const TaskList = ({ tasks = [], onDeleteTask, onStatusTask, loader, onSearch, ..
                 <Link to="/completed" className="option-btn">Completed</Link>
                 <Link to="/deleted" className="option-btn">Deleted</Link>
             </div>
-            {loader ?
-                <Preloader /> :
-                filteredTasks.map(elem => <TaskItem key={elem.id} {...elem} onDeleteTask={onDeleteTask} onStatusTask={onStatusTask} />
-                )}
+           {filteredTasks.map(elem => <TaskItem key={elem.id} {...elem} onDeleteTask={onDeleteTask} onStatusTask={onStatusTask} />)}
         </div>
     )
 }

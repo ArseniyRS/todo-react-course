@@ -7,7 +7,7 @@ const SearchTask = ({ onSearch }) => {
     return (
         <div className={'search-task'}>
             <input placeholder="search tasks..." type="text" value={searchValue} onChange={(e) => setSearchValue(e.target.value)} />
-            <button onClick={() => onSearch(searchValue)}><i class="fas fa-search" /></button>
+            <button onClick={() => onSearch(searchValue)}><i className="fas fa-search" /></button>
         </div>
     )
 }

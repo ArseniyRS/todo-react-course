@@ -3,17 +3,16 @@ import TaskList from "./Tasks/TaskList";
 import '../styles/main.scss'
 import { Route } from "react-router";
 import CreateOrEditTaskFrom from './Tasks/CreateOrEditTaskFrom'
-import { getTaskList } from '../api'
+import {  createTaskReq, deleteTaskReq, getTaskListReq, editStatusTaskReq, editTaskReq, getSearchedTasksReq } from '../api'
 import { ToastsContainer, ToastsStore } from 'react-toasts';
 
 function App() {
   const [tasks, setTasks] = useState([])
-  const [searchedTasks, setSearchedTasks] = useState([])
   const [fetchTasks, setFetchTasks] = useState(false)
 
   const getData = async () => {
     setFetchTasks(true)
-    const { data } = await getTaskList()
+    const { data } = await getTaskListReq()
     setTasks(data)
     setFetchTasks(false)
   }
@@ -21,43 +20,39 @@ function App() {
     getData()
   }, [])
 
-  useEffect(()=>{
-    setSearchedTasks(tasks)
-  },[tasks])
 
-  const createTaskStatus = (id, state, btnValue) => {
-    const copyData = [...tasks]
-    const changedData = copyData.map(task => {
-      if (task.id === id) {
-        task[btnValue] = state
-      }
-      return task
+
+  const createTaskStatus = async (id, state, btnValue) => {
+    await editStatusTaskReq(id, {
+      [btnValue]: state
     })
-    setTasks(changedData)
+    await getData()
     ToastsStore[btnValue === 'completed' ? 'success' : 'warning'](`TASK №${id}\n"${btnValue.toUpperCase()}" STATE\nHAS BEEN CHANGED`)
   }
 
 
-  const createTask = (data) => setTasks([...tasks, data])
+  const createTask = async (data) => {
+    await createTaskReq(data)
+    await getData()
+  }
 
-  const deleteTask = id => {
-    const idxNum = tasks.findIndex((item) => item.id === id)
-    setTasks([...tasks.slice(0, idxNum), ...tasks.slice(idxNum + 1)])
+  const deleteTask = async id => {
+    await deleteTaskReq(id)
+    await getData()
     ToastsStore.error(`TASK №${id} HAS BEEN DELETED`)
   }
 
 
-  const editTask = (id, data) => {
-    const idxNum = tasks.findIndex((item) => item.id == id)
-    let copyTasks = [...tasks]
-    copyTasks[idxNum].title = data.title
-    copyTasks[idxNum].userId = data.userId
-    setTasks(copyTasks)
+  const editTask = async (id, data) => {
+    await editTaskReq(id, data)
+    await getData()
   }
 
-  const searchTasks = (value) =>{
-    let copyTasks = [...tasks]
-    setSearchedTasks(copyTasks.filter(task => task.title.match(value)))
+  const searchTasks = async (value) =>{
+     setFetchTasks(true)
+     const {data} = await getSearchedTasksReq(value)
+     setTasks(data)
+     setFetchTasks(false)
   }
 
   return (
@@ -65,10 +60,10 @@ function App() {
       <ToastsContainer store={ToastsStore} />
 
       <Route path={['/', '/important', '/completed', '/deleted']} exact >
-        <TaskList onSearch={searchTasks} loader={fetchTasks} tasks={searchedTasks} onDeleteTask={deleteTask} onStatusTask={createTaskStatus} />
+        <TaskList onSearch={searchTasks} loader={fetchTasks} tasks={tasks} onDeleteTask={deleteTask} onStatusTask={createTaskStatus} />
       </Route>
       <Route path={['/create-task', '/edit-task/:id']} exact >
-        <CreateOrEditTaskFrom tasks={searchedTasks} onSubmitForCreate={createTask} onSubmitForEdit={editTask} lastId={tasks.length + 1} />
+        <CreateOrEditTaskFrom tasks={tasks} onSubmitForCreate={createTask} onSubmitForEdit={editTask} />
       </Route>
     </div>
   );
